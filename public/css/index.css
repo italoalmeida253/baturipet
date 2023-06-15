@@ -90,7 +90,8 @@
 }
 .button {
   padding: 0.4em 1.3em; 
-  font-family: Baloo; 
+  font-family: Baloo;
+  font-weight: normal;
   font-size: 1em; 
   background-color:#F38D34; 
   color: #fff; 
@@ -244,8 +245,8 @@ main > aside > nav {
   }
   .menu-start {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: space-between;
+    align-items: stretch;
     height: 100%;
   }
   .menu-end {
@@ -254,8 +255,13 @@ main > aside > nav {
   .menu-end__item {
     display: unset;
   }
+  .aside-menu__item {
+    width: 100%;
+  }
   .aside-menu__link {
     padding: 0;
+    height: 100%;
+    width: 100%;
     border: none;
   }
 }

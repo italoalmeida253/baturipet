@@ -25,6 +25,7 @@ function getLocation (event) {
         const { longitude, latitude } = position.coords
         userLocation = position
         checkbox.setAttribute('value', `${longitude};${latitude}`)
+        centerMap(longitude, latitude)
         checkbox.checked = true
       }, () => {
         alert('por favor, ative a permissão de localização para utilizar esse recurso')
@@ -32,6 +33,7 @@ function getLocation (event) {
     } else {
       if (checkbox.checked) {
         const { longitude, latitude } = userLocation.coords
+        centerMap(longitude, latitude)
         checkbox.setAttribute('value', `${longitude};${latitude}`)
       } else {
         checkbox.removeAttribute('value')
@@ -41,4 +43,11 @@ function getLocation (event) {
     event.preventDefault()
     alert('por favor, ative a permissão de localização para utilizar esse recurso')
   }
+}
+
+function centerMap(lng, ltd) {
+  map.flyTo({
+    center: [lng, ltd],
+    essential: true
+  })
 }
