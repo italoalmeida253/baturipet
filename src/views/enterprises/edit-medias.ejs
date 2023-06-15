@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BaturiPet</title>
+</head>
+<body>
+  <h1>Editar redes sociais</h1>
+  <form action="/enterprise/edit-medias" method="post">
+    <input type="hidden" value=<%= token %> name="csrfToken">
+    <input type="text" name="location" placeholder="Localização">
+    <input type="text" name="whatsapp" placeholder="Link do Whatsapp">
+    <input type="text" name="instagram" placeholder="Link do Instagram">
+    <input type="text" name="phone" placeholder="Telefone">
+    <input type="text" name="email" placeholder="Email (o seu email de acesso também será atualizado)">
+    <button type="submit">Editar</button>
+  </form>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/register.css">
+  <title>BaturiPet</title>
+</head>
+
+<body>
+  <ul class="errors-list">
+    <% for (error of errors) { %>
+      <li class="error">
+        <p class="error__message">
+          <%= error %>
+        </p>
+      </li>
+    <% } %>
+  </ul>
+  <div class="menu">
+    <a href="/">
+      <img id="back" src="/images/register/back.svg">
+    </a>
+
+    <a href="#">
+      <img id="logo" src="/images/register/logo.svg">
+    </a>
+
+    <a href="#">
+      <img id="profile" src="/images/register/profile.svg">
+    </a>
+  </div>
+
+  <div class="center">
+
+    <div id="logincad">
+
+      <h1 id="is">Cadastre-se</h1>
+
+      <div id="caixalog">
+
+        <form class="login" method="post" action="/register">
+          <div class="padding">
+            <label>
+              <input type="text" class="campos" placeholder="Nome Completo" name="name" required>
+            </label>
+            <label>
+              <input type="text" class="campos" placeholder="Nome de Usuário" name="username" required>
+            </label>
+            <label>
+              <input type="text" class="campos" placeholder="CPF" name="cpf" required>
+            </label>
+            <label>
+              <input type="email" class="campos" placeholder="E-Mail" name="email" required>
+            </label>
+            <label>
+              <input type="password" class="campos" placeholder="Senha" name="password" required>
+            </label>
+            <label>
+              <input type="password" class="campos" placeholder="Confirme sua senha" name="passwordCheck" required>
+            </label>
+            <input type="submit" class="btn fade_8S" name="register" value="Cadastrar">
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div id="contpg">
+    <section class="courses">
+
+      <a href="#">
+        <div class="course">
+          <img src="/images/ongs.avif" alt="Ilustração do curso" class="course__illustration">
+          <h1 class="course__title">ONG's</h1>
+        </div>
+      </a>
+
+      <a href="#">
+        <div class="course">
+          <img src="/images/comu.avif" alt="Ilustração do curso" class="course__illustration">
+          <h1 class="course__title">Comunidade</h1>
+        </div>
+      </a>
+
+      <a href="#">
+        <div class="course">
+          <img src="/images/serv.avif" alt="Ilustração do curso" class="course__illustration">
+          <h1 class="course__title">Serviços</h1>
+        </div>
+      </a>
+
+    </section>
+  </div>
+
+  <footer class="main_footer container">
+
+    <div class="content">
+      <div class="colfooter">
+        <h3 class="titleFooter"> Desenvolvedores</h3>
+        <p><i class="icon icon-mail"></i> Italo Almeida</p>
+        <p><i class="icon icon-phone"></i> Maria Clara Araújo</p>
+        <p><i class="icon icon-whatsapp"></i> Anna Jun Silva</p>
+        </ul>
+      </div>
+      <div class="colfooter">
+        <h3 class="titleFooter"> Equipe de Design:</h3>
+        <p><i class="icon icon-mail"></i> Ana Luisa Alves</p>
+        <p><i class="icon icon-phone"></i> Fernando Araújo</p>
+        <p><i class="icon icon-whatsapp"></i> Maria Clara Araújo</p>
+      </div>
+      <div class="colfooter">
+        <h3 class="titleFooter"> Equipe de Analistas</h3>
+        <p><i class="icon icon-mail"></i> Monique de Freitas</p>
+        <p><i class="icon icon-phone"></i> Wladimir Miranda</p>
+      </div>
+      <div class="clear"></div>
+    </div>
+
+    <div class="main_footer_copy">
+      <p class="m-b-footer"> BaturiPet © todos os direitos reservados.</p>
+    </div>
+  </footer>
+</body>
+
+</html>

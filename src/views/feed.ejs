@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- google fonts links -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- --- -->
+  <!-- mapbox gl -->
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+  <!-- --- -->
+  <link rel="stylesheet" href="/css/index.css"> <!-- css file link -->
+  <link rel="stylesheet" href="/css/feed.css"> <!-- css file link -->
+  <title>BaturiPet</title>
+</head>
+
+<body>
+  <%- include('includes/header.ejs') %>
+  <main>
+    <div class="modal-layer">
+      <div class="modal">
+        <button class="button modal__close-btn" onclick="showModal()">Fechar</button>
+        <div id="map"></div>
+        <h2 class="modal__title">Ultima vez visto</h2>
+        <a href="https://maps.google.com/" target="_blank" class="button modal__dynamic-link">Ver no Google Maps</a>
+      </div>
+    </div>
+    <aside>
+      <nav>
+        <ul class="aside-menu">
+          <div class="menu-start">
+            <li class="aside-menu__item">
+              <a href="/" class="aside-menu__link aside-menu__link--sth">
+                <img src="/images/feed/home.png" alt="Ícone de casa" class="aside-menu__icon">
+                Página inicial
+              </a>
+            </li>
+            <li class="aside-menu__item">
+              <a href="/client/inbox" class="aside-menu__link">
+                <img src="/images/feed/chatting.png" alt="Ícone de mensagem" class="aside-menu__icon">
+                Caixa de mensagens
+              </a>
+            </li>
+            <li class="aside-menu__item">
+              <a href="/enterprises" class="aside-menu__link">
+                <img src="/images/feed/petshop.png" alt="Ícone de empresa" class="aside-menu__icon">
+                Empresas
+              </a>
+            </li>
+            <li class="aside-menu__item">
+              <a href="/" class="aside-menu__link">
+                <img src="/images/feed/notification.png" alt="Ícone de sino" class="aside-menu__icon">
+                Notificações
+              </a>
+            </li>
+            <li class="aside-menu__item">
+              <a href=<%= `/${type}/profile` %> class="aside-menu__link">
+                <img src="/images/feed/setting.png" alt="Ícone de engrenagem" class="aside-menu__icon">
+                Configurações
+              </a>
+            </li>
+            <li class="aside-menu__item menu-end__item">
+              <a href=<%= `/${type}/profile` %> class="aside-menu__link aside-menu__link--profile">
+                <img src="/images/person-circle.svg" alt="Ícone de usuário" class="aside-menu__icon">
+                Perfil
+              </a>
+            </li>
+          </div>
+          <div class="menu-end">
+            <li class="aside-menu__item">
+              <a href=<%= `/${type}/profile` %> class="aside-menu__link aside-menu__link--profile">
+                <img src="/images/person-circle.svg" alt="Ícone de usuário" class="aside-menu__icon">
+                Perfil
+              </a>
+            </li>
+          </div>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="publications">
+
+      <% for (const publication of publications) { %>
+
+        <section data-id=<%= publication.id %> data-state=<%= publication.state %> class="publication">
+          <div class="publication__container publication__main">
+            <header class="publication__container">
+              <img src=<%= publication.author.profilePic %> alt="Imagem do usuário" class="publication__user-pic">
+              <a href=<%= `/profile/${publication.author.username}` %> class="publication__author">
+                <%= publication.author.username %>
+              </a>
+            </header>
+            <img src=<%= publication.imagePath %> alt="Imagem da publicação" class="publication__image">
+            <footer class="publication__container">
+              <div class="footer-start">
+                <% if (publication.state === 'liked') { %>
+                  <img src="/images/feed/heart-fill.svg" alt="Ícone de coração" class="like-btn like-btn--liked">
+                  <img src="/images/feed/heart-fill-mono.svg" alt="Ícone de coração" class="publication__heart publication__heart--animated">
+                <% } else { %>
+                  <img src="/images/feed/heart-fill.svg" alt="Ícone de coração" class="like-btn">
+                  <img src="/images/feed/heart-fill-mono.svg" alt="Ícone de coração" class="publication__heart">
+                <% } %>
+                <h2 class="likes-qty">
+                  <%= publication.likes %>
+                </h2>
+              </div>
+              <div class="footer-end">
+                <% if (publication.longitude) { %>
+                  <button 
+                    class="button button--icon location-btn"
+                    data-longitude=<%= publication.longitude %>
+                    data-latitude=<%= publication.latitude %>
+                  >
+                    <img src="/images/geo-alt-fill.svg" alt="Ícone de alfinete">
+                  </button>  
+                <% } else { %>
+                  <button class="button button--icon button--disabled" title="Localização indisponível">
+                    <img src="/images/geo-alt-fill.svg" alt="Ícone de alfinete">
+                  </button>
+                <% } %>
+              </div>
+            </footer>
+          </div>
+
+          <aside class="publication__container">
+            <header class="publication__container">
+              <img src=<%= publication.author.profilePic %> alt="Imagem do usuário" class="publication__user-pic">
+              <div class="publication__user-infors">
+                <a href=<%= `/profile/${publication.author.username}` %> class="publication__author">
+                  <%= publication.author.username %>
+                </a>
+                <span class="publication__caption">
+                  <%= publication.description %>
+                </span>
+              </div>
+            </header>
+
+            <ul class="comments">
+
+              <% if (publication.comments.length === 0) { %>
+                <h2 class="comments__title">Seja o primeiro a comentar!</h2>
+              <% } else { %>
+                <% for (const comment of publication.comments) { %>
+
+                  <li class="comments__item">
+                    <img src=<%= comment.author.profilePic %> alt="Imagem do usuário" class="comments__user-pic">
+                    <div class="comments__user-infors">
+                      <a href=<%= `/profile/${comment.author.username}` %> class="comments__author">
+                        <%= comment.author.username %>
+                      </a>
+                      <span class="comments__comment">
+                        <%= comment.comment %>
+                      </span>
+                    </div>
+                  </li>
+  
+                <% } %>
+              <% } %>
+
+            </ul>
+
+            <footer class="publication__container publication__footer">
+              <input type="text" name="comment" class="publication__input comment" placeholder="Enviar comentário...">
+              <button type="button" class="publication__button comment-btn">
+                <img src="/images/feed/send.svg" alt="Ícone de carta" class="publication__icon">
+              </button>
+            </footer>
+          </aside>
+        </section>
+
+      <% } %>
+    </article>
+  </main>
+  <span data-session=<%= sessionStatus %> id="session-status"></span>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/mapbox.js"></script>
+  <script src="/js/feed.js"></script>
+</body>
+
+</html>

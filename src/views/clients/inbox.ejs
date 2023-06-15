@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- google fonts links -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- --- -->
+  <link rel="stylesheet" href="/css/index.css"> <!-- css file link -->
+  <link rel="stylesheet" href="/css/inbox.css"> <!-- css file link -->
+  <title>BaturiPet</title>
+</head>
+
+<body>
+  <%- include('../includes/header.ejs') %>
+  <main>
+    <aside>
+      <nav>
+        <ul class="aside-menu">
+          <div class="menu-start">
+            <li class="aside-menu__item">
+              <a href="/" class="aside-menu__link">
+                <img src="/images/feed/home.png" alt="Ícone de casa" class="aside-menu__icon">
+                Página inicial
+              </a>
+            </li>
+            <li class="aside-menu__item">
+              <a href="/client/inbox" class="aside-menu__link aside-menu__link--sth">
+                <img src="/images/feed/chatting.png" alt="Ícone de mensagem" class="aside-menu__icon">
+                Caixa de mensagens
+              </a>
+            </li>
+            <li class="aside-menu__item">
+              <a href="/enterprises" class="aside-menu__link">
+                <img src="/images/feed/petshop.png" alt="Ícone de empresa" class="aside-menu__icon">
+                Empresas
+              </a>
+            </li>
+            <li class="aside-menu__item">
+              <a href="/" class="aside-menu__link">
+                <img src="/images/feed/notification.png" alt="Ícone de sino" class="aside-menu__icon">
+                Notificações
+              </a>
+            </li>
+            <li class="aside-menu__item">
+              <a href=<%= `/${type}/profile` %> class="aside-menu__link">
+                <img src="/images/feed/setting.png" alt="Ícone de engrenagem" class="aside-menu__icon">
+                Configurações
+              </a>
+            </li>
+            <li class="aside-menu__item menu-end__item">
+              <a href=<%= `/${type}/profile` %> class="aside-menu__link aside-menu__link--profile">
+                <img src="/images/person-circle.svg" alt="Ícone de usuário" class="aside-menu__icon">
+                Perfil
+              </a>
+            </li>
+          </div>
+          <div class="menu-end">
+            <li class="aside-menu__item">
+              <a href=<%= `/${type}/profile` %> class="aside-menu__link aside-menu__link--profile">
+                <img src="/images/person-circle.svg" alt="Ícone de usuário" class="aside-menu__icon">
+                Perfil
+              </a>
+            </li>
+          </div>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="inbox">
+      <div class="inbox__container">
+        <header>
+          <ul class="inbox-menu">
+            <li class="inbox-menu__item">
+              <a href="" class="inbox-menu__link inbox-menu__link--sth">
+                Amigos
+              </a>
+            </li>
+            <li class="inbox-menu__item">
+              <a href="" class="inbox-menu__link">
+                Solicitações
+              </a>
+            </li>
+          </ul>
+        </header>
+        <section class="friends-list">
+          <ul class="friends">
+            <li class="friends__item">
+              <a href="#" class="friends__link">
+                <div class="user-infors">
+                  <img src="/images/inbox/foto-darwin.png" alt="Foto de perfil do usuário" class="friends__user-pic">
+                  <h2 class="friends__username">Darwin_2012</h2>
+                </div>
+                <img src="/images/inbox/camera.png" alt="Ícone de câmera" class="friends__icon">
+              </a>
+            </li>
+            <li class="friends__item">
+              <a href="#" class="friends__link">
+                <div class="user-infors">
+                  <img src="/images/inbox/cristhyanmorais.png" alt="Foto de perfil do usuário" class="friends__user-pic">
+                  <h2 class="friends__username">Christyanmoraes_123</h2>
+                </div>
+                <img src="/images/inbox/camera.png" alt="Ícone de câmera" class="friends__icon">
+              </a>
+            </li>
+          </ul>
+        </section>
+      </div>
+      <section class="warn">
+        <div class="warn__container">
+          <img src="/images/inbox/folhas.png" alt="Imagem de folhas" class="warn__image">
+          <h2 class="warn__title">Sua lista de amigos chegou ao fim :(</h2>
+        </div>
+      </section>
+    </article>
+  </main>
+</body>
+
+</html>

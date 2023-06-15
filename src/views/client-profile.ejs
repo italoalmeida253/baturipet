@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- google fonts links -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- --- -->
+  <link rel="stylesheet" href="/css/index.css"> <!-- css file link -->
+  <link rel="stylesheet" href="/css/profile.css"> <!-- css file link -->
+  <title>Document</title>
+</head>
+
+<body>
+  <%- include('includes/header.ejs') %>
+  <main>
+    <aside>
+      <nav>
+        <ul class="aside-menu">
+          <div class="menu-start">
+            <li class="aside-menu__item">
+              <a href="/" class="aside-menu__link">
+                <img src="/images/feed/home.png" alt="Ícone de casa" class="aside-menu__icon">
+                Página inicial
+              </a>
+            </li>
+            <li class="aside-menu__item">
+              <a href="/client/inbox" class="aside-menu__link">
+                <img src="/images/feed/chatting.png" alt="Ícone de mensagem" class="aside-menu__icon">
+                Caixa de mensagens
+              </a>
+            </li>
+            <li class="aside-menu__item">
+              <a href="/enterprises" class="aside-menu__link">
+                <img src="/images/feed/petshop.png" alt="Ícone de empresa" class="aside-menu__icon">
+                Empresas
+              </a>
+            </li>
+            <li class="aside-menu__item">
+              <a href="/" class="aside-menu__link">
+                <img src="/images/feed/notification.png" alt="Ícone de sino" class="aside-menu__icon">
+                Notificações
+              </a>
+            </li>
+            <li class="aside-menu__item">
+              <a href=<%= `/${type}/profile` %> class="aside-menu__link">
+                <img src="/images/feed/setting.png" alt="Ícone de engrenagem" class="aside-menu__icon">
+                Configurações
+              </a>
+            </li>
+            <li class="aside-menu__item menu-end__item">
+              <a href=<%= `/${type}/profile` %> class="aside-menu__link aside-menu__link--profile aside-menu__link--sth">
+                <img src="/images/person-circle.svg" alt="Ícone de usuário" class="aside-menu__icon">
+                Perfil
+              </a>
+            </li>
+          </div>
+          <div class="menu-end">
+            <li class="aside-menu__item">
+              <a href=<%= `/${type}/profile` %> class="aside-menu__link aside-menu__link--profile">
+                <img src="/images/person-circle.svg" alt="Ícone de usuário" class="aside-menu__icon">
+                Perfil
+              </a>
+            </li>
+          </div>
+        </ul>
+      </nav>
+    </aside>
+
+    <div class="main__container">
+      <article class="user">
+        <img src=<%= profilePic %> alt="" class="user__profile-pic">
+        <div class="user__flex">
+          <header>
+            <h2 class="user__username">
+              <%= username %>
+            </h2>
+          </header>
+          <ul class="user__statistics">
+            <li class="user__statistic">
+              <strong>
+                <%= publications.length %>
+              </strong>
+              Publicações
+            </li>
+          </ul>
+          <h2 class="user__name">
+            <%= name %>
+          </h2>
+        </div>
+      </article>
+      <article class="publications">
+        <h1 class="publications__title">Publicações</h1>
+  
+        <div class="publications__grid">
+          <% for (const publication of publications) { %>
+            <img src=<%= publication.imagePath %> alt="Imagem da publicação" class="publication__preview">
+          <% } %>
+        </div>
+  
+      </article>
+    </div>
+  </main>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+
+</html>

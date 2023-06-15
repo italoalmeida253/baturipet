@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BaturiPet</title>
+</head>
+<body>
+  <h1>Editar dados</h1>
+  <form action="/user/edit-data" enctype="multipart/form-data" method="post">
+    <input type="hidden" value=<%= token %> name="csrfToken">
+    <input type="file" name="image" placeholder="Imagem de perfil">
+    <input type="text" name="username" placeholder="Nome de usuário">
+    <input type="text" name="email" placeholder="E-Mail">
+    <input type="text" name="password" placeholder="Senha">
+    <input type="text" name="passwordCheck" placeholder="Confirmar senha">
+    <button type="submit">Editar</button>
+  </form>
+</body>
+</html>
