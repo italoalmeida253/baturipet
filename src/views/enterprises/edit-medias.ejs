@@ -1,20 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- google fonts links -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- --- -->
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/publish.css">
+  <link rel="stylesheet" href="/css/edit-data.css">
   <title>BaturiPet</title>
 </head>
+
 <body>
-  <h1>Editar redes sociais</h1>
-  <form action="/enterprise/edit-medias" method="post">
-    <input type="hidden" value=<%= token %> name="csrfToken">
-    <input type="text" name="location" placeholder="Localização">
-    <input type="text" name="whatsapp" placeholder="Link do Whatsapp">
-    <input type="text" name="instagram" placeholder="Link do Instagram">
-    <input type="text" name="phone" placeholder="Telefone">
-    <input type="text" name="email" placeholder="Email (o seu email de acesso também será atualizado)">
-    <button type="submit">Editar</button>
-  </form>
+  <%- include('../includes/header.ejs') %>
+    <main>
+      <aside>
+        <nav>
+          <ul class="aside-menu">
+            <div class="menu-start">
+              <li class="aside-menu__item">
+                <a href="/" class="aside-menu__link">
+                  <img src="/images/feed/home.png" alt="Ícone de casa" class="aside-menu__icon">
+                  Página inicial
+                </a>
+              </li>
+              <li class="aside-menu__item">
+                <a href="/client/inbox" class="aside-menu__link">
+                  <img src="/images/feed/chatting.png" alt="Ícone de mensagem" class="aside-menu__icon">
+                  Caixa de mensagens
+                </a>
+              </li>
+              <li class="aside-menu__item">
+                <a href="/enterprises" class="aside-menu__link">
+                  <img src="/images/feed/petshop.png" alt="Ícone de empresa" class="aside-menu__icon">
+                  Empresas
+                </a>
+              </li>
+              <li class="aside-menu__item">
+                <a href="/user/notifications" class="aside-menu__link">
+                  <img src="/images/feed/notification.png" alt="Ícone de sino" class="aside-menu__icon">
+                  Notificações
+                </a>
+              </li>
+              <li class="aside-menu__item">
+                <a href=<%=`/${type}/profile` %> class="aside-menu__link">
+                  <img src="/images/feed/setting.png" alt="Ícone de engrenagem" class="aside-menu__icon">
+                  Configurações
+                </a>
+              </li>
+              <li class="aside-menu__item menu-end__item">
+                <a href=<%=`/${type}/profile` %> class="aside-menu__link aside-menu__link--profile">
+                  <img src="/images/person-circle.svg" alt="Ícone de usuário" class="aside-menu__icon">
+                  Perfil
+                </a>
+              </li>
+            </div>
+            <div class="menu-end">
+              <li class="aside-menu__item">
+                <a href=<%=`/${type}/profile` %> class="aside-menu__link aside-menu__link--profile">
+                  <img src="/images/person-circle.svg" alt="Ícone de usuário" class="aside-menu__icon">
+                  Perfil
+                </a>
+              </li>
+            </div>
+          </ul>
+        </nav>
+      </aside>
+      <article class="edit-data">
+        <form action="/enterprise/edit-medias" method="post">
+          <input type="hidden" value=<%=token %> name="csrfToken">
+          <h1>Editar redes sociais</h1>
+          <label>
+            Localização:
+            <input type="text" name="location" placeholder="Digite aqui...">
+          </label>
+          <label>
+            Link do Whatsapp:
+            <input type="text" name="whatsapp" placeholder="Digite aqui...">
+          </label>
+          <label>
+            Link do Instagram:
+            <input type="text" name="instagram" placeholder="Digite aqui...">
+          </label>
+          <label>
+            Telefone:
+            <input type="text" name="phone" placeholder="Digite aqui...">
+          </label>
+          <label>
+            Email (o seu email de acesso será atualizado):
+            <input type="text" name="email" placeholder="Digite aqui...">
+          </label>
+          <button type="submit" class="button">Editar</button>
+        </form>
+      </article>
+    </main>
 </body>
+
 </html>

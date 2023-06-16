@@ -67,13 +67,34 @@
   object-fit: cover;
   aspect-ratio: 1 / 1;
 }
+.publication__image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 6px;
+  box-shadow: 0 0 8px #00000020;
+}
+.publication__image:hover {
+  filter: brightness(60%);
+  cursor: pointer;
+}
 .publications__grid {
   display: grid;
   gap: 4px;
   grid-template-columns: repeat(3, 1fr);
 }
 .publication__preview {
+  position: relative;
+  font-size: 0;
   width: 100%;
+  z-index: 1;
+}
+.publication__actions {
+  display: flex;
+  gap: 0 16px;
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  z-index: 99;
 }
 .enterprise__location {
   display: flex;

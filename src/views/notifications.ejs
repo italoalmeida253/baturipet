@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <!-- --- -->
   <link rel="stylesheet" href="/css/index.css"> <!-- css file link -->
-  <link rel="stylesheet" href="/css/enterprises.css"> <!-- css file link -->
+  <link rel="stylesheet" href="/css/inbox.css"> <!-- css file link -->
   <title>BaturiPet</title>
 </head>
 
@@ -34,12 +34,12 @@
               </a>
             </li>
             <li class="aside-menu__item">
-              <a href="/enterprises" class="aside-menu__link aside-menu__link--sth">
+              <a href="/enterprises" class="aside-menu__link">
                 <img src="/images/feed/petshop.png" alt="Ícone de empresa" class="aside-menu__icon">
                 Empresas
               </a>
             </li>
-            <li class="aside-menu__item">
+            <li class="aside-menu__item aside-menu__link--sth">
               <a href="/user/notifications" class="aside-menu__link">
                 <img src="/images/feed/notification.png" alt="Ícone de sino" class="aside-menu__icon">
                 Notificações
@@ -70,53 +70,38 @@
       </nav>
     </aside>
 
-    <article class="enterprises">
-      <header>
-        <section class="searchbar">
-          <input type="search" class="searchbar__field">
-          <img src="images/lupa.png" alt="Imagem de lupa" class="searchbar__icon">
-        </section>
-      </header>
-      <div class="enterprises__grid">
-        <% for (enterprise of enterprises) { %>        
-          <section class="enterprise">
-            <img src=<%= enterprise.profilePic %> alt="Imagem da empresa" class="enterprise__image">
-            <div class="enterprise__flex">
-              <h2 class="enterprise__title">
-                <%= enterprise.name %>
-              </h2>
-              <ul class="enterprise__medias">
-                <li class="enterprise__media">
-                  <a target="_blank" href=<%= enterprise.whatsapp %> class="button button--icon">
-                    <img src="/images/profile/whatsapp.svg" alt="" class="enterprise__icon">
-                  </a>
-                </li>
-                <li class="enterprise__media">
-                  <a target="_blank" href=<%= enterprise.instagram %> class="button button--icon">
-                    <img src="/images/profile/instagram.svg" alt="" class="enterprise__icon">
-                  </a>
-                </li>
-                <li class="enterprise__media">
-                  <a target="_blank" href=<%= `tel:${enterprise.phone}` %> class="button button--icon">
-                    <img src="/images/profile/envelope.svg" alt="" class="enterprise__icon">
-                  </a>
-                </li>
-                <li class="enterprise__media">
-                  <a target="_blank" href=<%= `mailto:${enterprise.email}` %> class="button button--icon">
-                    <img src="/images/profile/telephone.svg" alt="" class="enterprise__icon">
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <h2 class="enterprise__location">
-              <a target="_blank" href=<%= enterprise.location %> class="button button--icon">
-                <img src="/images/geo-alt-fill.svg" alt="Ícone de alfinete" class="enterprise__icon">
+    <article class="inbox">
+      <div class="inbox__container">
+        <section class="friends-list">
+          <ul class="friends">
+            <li class="friends__item">
+              <a href="#" class="friends__link">
+                <div class="user-infors">
+                  <img src="/images/inbox/foto-darwin.png" alt="Foto de perfil do usuário" class="friends__user-pic">
+                  <h2 class="friends__username">Darwin_2012</h2>
+                </div>
+                <img src="/images/inbox/camera.png" alt="Ícone de câmera" class="friends__icon">
               </a>
-              Localização
-            </h2>
-          </section>
-        <% } %>
+            </li>
+            <li class="friends__item">
+              <a href="#" class="friends__link">
+                <div class="user-infors">
+                  <img src="/images/inbox/cristhyanmorais.png" alt="Foto de perfil do usuário" class="friends__user-pic">
+                  <h2 class="friends__username">Christyanmoraes_123</h2>
+                </div>
+                <img src="/images/inbox/camera.png" alt="Ícone de câmera" class="friends__icon">
+              </a>
+            </li>
+          </ul>
+        </section>
       </div>
+      <section class="warn">
+        <div class="warn__container">
+          <img src="/images/inbox/folhas.png" alt="Imagem de folhas" class="warn__image">
+          <h2 class="warn__title">Não há mais notificações...</h2>
+        </div>
+      </section>
+    </article>
   </main>
 </body>
 

@@ -81,6 +81,61 @@ const controller = {
     get (req, res) {
       return res.render('clients/inbox')
     }
+  },
+  editPublication: {
+    async get (req, res) {
+      const { publication: publicationId } = req.params
+      const publication = await Publication.findById(publicationId).exec()
+      if (!publication) {
+        return res.redirect('/')
+      }
+
+      return res.render('clients/edit-publication', {
+        publication
+      })
+    },
+    async post (req, res) {
+      const { publication: publicationId } = req.params
+      const publication = await Publication.findById(publicationId).exec()
+      if (!publication) {
+        console.log('nao encontrada')
+        return res.redirect('/')
+      }
+
+      const { description } = req.body
+      const location = req.body.location
+
+      if (description) {
+        console.log(description)
+        publication.description = description
+      }
+      if (location) {
+        console.log(location)
+        const [longitude, latitude] = location.split(';')
+        publication.longitude = longitude
+        publication.latitude = latitude
+      }
+
+      await publication.save()
+      return res.redirect('/')
+    }
+  },
+  deletePublication: {
+    get (req, res) {
+      const { publication: publicationId } = req.params
+      return res.render('clients/delete-publication', {
+        publicationId
+      })
+    },
+    async post (req, res) {
+      const { publication: publicationId } = req.params
+      const exist = await Publication.findById(publicationId).exec()
+      if (!exist) {
+        return res.redirect('/client/profile')
+      }
+      await Publication.deleteOne({ _id: publicationId })
+      return res.redirect('/client/profile')
+    }
   }
 }
 

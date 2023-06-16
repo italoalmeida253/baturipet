@@ -10,20 +10,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <!-- --- -->
   <link rel="stylesheet" href="/css/index.css">
-  <link rel="stylesheet" href="/css/publish.css">
   <link rel="stylesheet" href="/css/edit-data.css">
   <title>BaturiPet</title>
 </head>
 
 <body>
-  <%- include('includes/header.ejs') %>
+  <%- include('../includes/header.ejs') %>
     <main>
       <aside>
         <nav>
           <ul class="aside-menu">
             <div class="menu-start">
               <li class="aside-menu__item">
-                <a href="/" class="aside-menu__link">
+                <a href="/" class="aside-menu__link aside-menu__link--sth">
                   <img src="/images/feed/home.png" alt="Ícone de casa" class="aside-menu__icon">
                   Página inicial
                 </a>
@@ -71,18 +70,13 @@
         </nav>
       </aside>
       <article class="edit-data">
-        <h1 class="edit-data__title">Editar dados</h1>
-        <form action="/user/edit-data" enctype="multipart/form-data" method="post">
-          <input type="hidden" value=<%=token %> name="csrfToken">
-          <label>
-            Foto de Perfil
-            <input type="file" name="image" placeholder="Imagem de perfil">
-          </label>
-          <input type="text" name="username" placeholder="Nome de usuário">
-          <input type="text" name="email" placeholder="E-Mail">
-          <input type="text" name="password" placeholder="Senha">
-          <input type="text" name="passwordCheck" placeholder="Confirmar senha">
-          <button type="submit" class="button">Editar</button>
+        <h1 class="edit-data__title">Excluir publicação</h1>
+        <form action=<%= `/client/delete/${publicationId}` %> method="post">
+          <h2 class="edit-data__subtitle">Tem certeza que deseja excluir?</h2>
+          <div class="edit-data__flex">
+            <a href="/client/profile" class="button">Não</a>
+            <button type="submit" class="button button--secondary">Excluir</button>
+          </div>
         </form>
       </article>
     </main>

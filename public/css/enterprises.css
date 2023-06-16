@@ -1,20 +1,10 @@
-/* css variables */
-:root {
-  --filters-width: 360px;
-}
-/* --- */
 /* aside style */
 main {
   padding: 60px;
-  padding-right: calc(var(--filters-width) + 64px);
   padding-left: calc(var(--aside-width) + 64px);
   padding-top: calc(var(--header-height) + 32px);
 }
 /* --- */
-.main__flex {
-  display: flex;
-  justify-content: space-between;
-}
 .searchbar {
   position: relative;
   width: 100%;
@@ -72,37 +62,6 @@ main {
   top: var(--header-height);
   right: 0;
 }
-.filters-container__title {
-  text-align: right;
-  font-weight: normal;
-  padding: 16px;
-  font-size: 28px;
-}
-.filters > header {
-  background-color: #D6B381;
-  padding: 16px 32px;
-  border-radius: 16px;
-}
-.filters__title {
-  font-size: 28px;
-  font-weight: normal;
-  text-align: center;
-}
-.filters {
-  background-color: #FFD599;
-  height: calc(100vh - var(--header-height));
-  border-radius: 16px;
-}
-.filters__button {
-  display: none;
-  border: 1px solid;
-  border-radius: 10px;
-  height: 40px;
-  line-height: 40px;
-  padding: 0 16px;
-  font-weight: bold;
-  cursor: pointer;
-}
 .enterprise__medias {
   display: flex;
   gap: 0 8px;
@@ -128,50 +87,11 @@ main {
   font-size: 18px;
 }
 /* media queries */
-@media (max-width: 1024px) {
-  :root {
-    --filters-width: 0px;
-  }
-  .filters__button {
-    display: unset;
-  }
-  .filters-container {
-    border-radius: 10px 0 0 10px;
-  }
-  .filters {
-    margin-top: 0;
-  }
-  .filters > header {
-    display: flex;
-    justify-content: space-between;
-    border-radius: unset;
-    border-top-left-radius: 10px;
-  }
-  .filters-container {
-    width: 340px;
-    transform: translateX(100%);
-    transition: .4s ease-in-out;
-  }
-  .filters__title {
-    text-align: left;
-    font-size: 20px;
-  }
-  .filters--showing {
-    transform: translateX(0%);
-  }
-  .filters-container__title {
-    display: none;
-  }
-}
 @media (max-width: 768px) {
   main {
     padding: 40px 20px;
     padding-top: calc(var(--header-height) + 40px);
     padding-bottom: calc(var(--aside-height) + 40px);
-  }
-  .filters-container {
-    --y-offset: calc(var(--header-height) + var(--aside-height));
-    height: calc(100vh - var(--y-offset));
   }
 }
 /* --- */

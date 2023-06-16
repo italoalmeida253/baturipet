@@ -1,0 +1,25 @@
+.edit-data {
+  margin: 0 auto;
+  border: 1px solid #00000010;
+  box-shadow: 4px 4px 40px #00000010;
+  padding: 32px;
+  width: 100%;
+  max-width: 768px;
+  border-radius: 6px;
+}
+.edit-data__title {
+  font-family: Baloo;
+  font-weight: normal;
+  font-size: 32px;
+}
+.edit-data__subtitle {
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 16px;
+}
+.edit-data__flex {
+  display: flex;
+  gap: 0 16px;
+}
+form {
+  gap: 16px 0;
+}

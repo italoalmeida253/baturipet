@@ -185,6 +185,11 @@ const controller = {
     get (req, res) {
       return res.render('passwd-recovery')
     }
+  },
+  notifications: {
+    get (req, res) {
+      return res.render('notifications')
+    }
   }
 }
 

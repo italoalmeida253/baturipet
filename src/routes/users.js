@@ -18,5 +18,7 @@ routes
 routes
   .route('/user/comment')
   .post(controller.comment.post)
+routes.get('/user/notifications', controller.notifications.get)
 routes.get('/password-recovery', controller.passwdRecovery.get)
+
 module.exports = routes
