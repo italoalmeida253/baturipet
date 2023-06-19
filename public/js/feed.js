@@ -1,6 +1,6 @@
+const locationContent = document.querySelector('.location')
 const locationBtns = document.querySelectorAll('.location-btn')
-const modalLayer = document.querySelector('.modal-layer')
-const dynamicLink = document.querySelector('.modal__dynamic-link')
+const dynamicLink = document.querySelector('.location__dynamic-link')
 let currentMarker = null
 
 for (const btn of locationBtns) {
@@ -8,16 +8,12 @@ for (const btn of locationBtns) {
   btn.addEventListener('click', () => genDynamicMap(longitude, latitude))
 }
 
-function showModal () {
-  modalLayer.classList.toggle('modal-layer--showing')
-}
-
 function genDynamicMap (lng, ltd) {
   if (currentMarker) {
     currentMarker.remove()
   }
   dynamicLink.setAttribute('href', genGoogleMapsLink(lng, ltd))
-  showModal()
+  showModal(locationContent)
   setTimeout(() => {
     const center = [lng, ltd]
     map.flyTo({

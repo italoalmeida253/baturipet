@@ -1,10 +1,4 @@
 const mongoose = require('mongoose')
-const bcrypt = require('bcrypt')
-
-async function main () {
-  console.log(await bcrypt.hash('qazoknip000', 10))
-}
-main()
 
 const enterpriseSchema = new mongoose.Schema({
   username: {

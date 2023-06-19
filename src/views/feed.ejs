@@ -21,12 +21,15 @@
 <body>
   <%- include('includes/header.ejs') %>
   <main>
-    <div class="modal-layer">
-      <div class="modal">
-        <button class="button modal__close-btn" onclick="showModal()">Fechar</button>
+    <div class="modal">
+      <div class="modal__layer">
+        <button class="button modal__button" onclick="hiddenModal()">Fechar</button>
+        <div class="modal__content"></div>
+      </div>
+      <div class="location modal__template">
         <div id="map"></div>
-        <h2 class="modal__title">Ultima vez visto</h2>
-        <a href="https://maps.google.com/" target="_blank" class="button modal__dynamic-link">Ver no Google Maps</a>
+        <h2 class="location__title">Ultima vez visto</h2>
+        <a href="#" target="_blank" class="button location__dynamic-link">Ver no Google Maps</a>
       </div>
     </div>
     <aside>
@@ -178,6 +181,7 @@
   <span data-session=<%= sessionStatus %> id="session-status"></span>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="/js/main.js"></script>
+  <script src="/js/modal.js"></script>
   <script src="/js/mapbox.js"></script>
   <script src="/js/feed.js"></script>
 </body>

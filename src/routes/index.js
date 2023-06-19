@@ -21,16 +21,13 @@ function defineTypeVar (req, res, next) {
 
 function checkSession (req, res, next) {
   try {
-    console.log(req.session)
     const { user } = req.session
     if (user) {
       return next()
     }
   } catch {
-    console.log('check session')
     return res.redirect('/login')
   }
-  console.log('check session')
   return res.redirect('/login')
 }
 
@@ -40,10 +37,8 @@ function checkClient (req, res, next) {
     if (type === 'client') {
       return next()
     }
-    console.log('check client')
     return res.redirect('/')
   } catch {
-    console.log('check client')
     return res.redirect('/')
   }
 }

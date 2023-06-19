@@ -21,7 +21,7 @@ app.use(session({
   secret: process.env.COOKIE_SECRET_KEY,
   cookie: {
     maxAge: 1000 * 60 * 60 * 24,
-    secure: true
+    // secure: true
   },
   saveUninitialized: true,
   resave: true
@@ -32,6 +32,6 @@ app.use(routes);
 (async () => {
   await connectDb()
   app.listen(process.env.PORT || 9687, () => {
-    console.log('servidor rodando na url https://localhost:9687/')
+    console.log(`server is running in http://localhost:${process.env.PORT || 9687}`)
   })
 })()

@@ -98,7 +98,6 @@ const controller = {
       const { publication: publicationId } = req.params
       const publication = await Publication.findById(publicationId).exec()
       if (!publication) {
-        console.log('nao encontrada')
         return res.redirect('/')
       }
 
@@ -106,11 +105,9 @@ const controller = {
       const location = req.body.location
 
       if (description) {
-        console.log(description)
         publication.description = description
       }
       if (location) {
-        console.log(location)
         const [longitude, latitude] = location.split(';')
         publication.longitude = longitude
         publication.latitude = latitude

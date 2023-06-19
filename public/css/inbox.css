@@ -14,8 +14,8 @@ main {
 .inbox-menu {
   display: flex;
   justify-content: space-between;
-  background-color: #ffdda8;
-  border-bottom: 1px solid black;
+  background-color: #ffd69a;
+  border-bottom: 1px solid #00000030;
 }
 .inbox-menu__item {
   width: 100%;
@@ -25,14 +25,14 @@ main {
   text-align: center;
   display: block;
   width: 100%;
-  padding: 16px 0;
+  padding: 12px 0;
   font-family: 'Inter', sans-serif;
-  font-size: 24px;
+  font-size: 20px;
   text-decoration: none;
   color: black;
 }
 .inbox-menu__link--sth {
-  background-color: #00000020;
+  background-color: #00000010;
 }
 .friends {
   display: flex;
@@ -42,20 +42,20 @@ main {
   list-style-type: none;
 }
 .friends__user-pic {
-  width: 60px;
+  width: 50px;
 }
 .friends__username {
-  font-size: 24px;
+  font-size: 20px;
   color: black;
   font-weight: normal;
 }
 .friends__icon {
-  height: 56px;
+  height: 50px;
 }
 .user-infors {
   display: flex;
   align-items: center;
-  gap: 0 16px;
+  gap: 0 8px;
 }
 .friends__link {
   display: flex;
@@ -64,7 +64,7 @@ main {
   padding: 16px;
   font-family: 'Inter', sans-serif;
   text-decoration: none;
-  border-bottom: 1px solid #610F0F;
+  border-bottom: 1px solid #00000030;
 }
 .warn {
   display: flex;
@@ -76,7 +76,7 @@ main {
 .warn__title {
   font-family: 'Inter', sans-serif;
   font-weight: normal;
-  font-size: 26px;
+  font-size: 20px;
 }
 @media (max-width: 768px) {
   main {

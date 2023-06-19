@@ -134,7 +134,6 @@ const controller = {
       }
 
       const user = await UserType.findOne({ username }).exec()
-      console.log(user)
       const publication = await Publication.findById(id).exec()
 
       const itsLike = user.likes.indexOf(id)

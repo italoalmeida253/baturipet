@@ -4,6 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
   <!-- google fonts links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,57 +72,58 @@
       </nav>
     </aside>
 
-    <div class="main__container">
-      <article class="user">
-        <img src=<%= profilePic %> alt="" class="user__profile-pic">
-        <div class="user__flex">
-          <header>
-            <h2 class="user__username">
-              <%= username %>
-            </h2>
-            <a href=<%= `/profile/${username}` %> class="button">Perfil público</a>
-            <a href="/user/edit-data" class="button">Editar perfil</a>
+    <article class="user">
+      <section class="infors">
+        <div class="infors__flex">
+          <div class="infors__container">
+            <div class="flex-column">
+              <img src=<%= profilePic %> alt="Imagem de perfil do usuário" class="infors__profile-pic">
+            </div>
+            <div class="flex-column">
+              <h2 class="infors__name">
+                <%= name %>
+              </h2>
+              <a href=<%= `/profile/${username}` %> class="infors__username">
+                <%= username %>
+              </a>
+              <ul class="infors__statistics">
+                <li class="infors__statistic">
+                  <strong>
+                    <%= publications.length %>
+                  </strong>
+                  Publicações
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="flex-column">
             <a href="/client/publish" class="button">Publicar</a>
-            <a href="/user/logout" class="button">Sair</a>
-          </header>
-          <ul class="user__statistics">
-            <li class="user__statistic">
-              <strong>
-                <%= publications.length %>
-              </strong>
-              Publicações
-            </li>
-          </ul>
-          <h2 class="user__name">
-            <%= name %>
-          </h2>
+          </div>
         </div>
-      </article>
-      <article class="publications">
-        <h1 class="publications__title">Publicações</h1>
-  
+      </section>
+      <section class="publications">
+        <h2 class="publications__title">Publicações</h2>
         <div class="publications__grid">
-          <% for (const publication of publications) { %>
-            <div class="publication__preview">
-              <img src=<%= publication.imagePath %> alt="Imagem da publicação" class="publication__image">
+          <% for (publication of publications) { %>
+            <div class="publication">
               <div class="publication__actions">
-                <a href=<%= `/client/edit/${publication.id}` %> class="button button--icon">
-                  <img src="/images/profile/pencil-fill.svg" alt="" class="publication__icon">
-                </a>
-                <a href=<%= `/client/delete/${publication.id}` %> class="button button--icon">
-                  <img src="/images/profile/trash-fill.svg" alt="" class="publication__icon">
-                </a>
+                <a href=<%= `/client/edit/${publication.id}` %> class="button">Editar</a>
+                <a href=<%= `/client/delete/${publication.id}` %> class="button">Excluir</a>
               </div>
+              <img src=<%= publication.imagePath %> alt="Imagem da publicação" class="publication__image">
+              <footer>
+                <p class="publication__description">
+                  <%= publication.description %>
+                </p>
+              </footer>
             </div>
           <% } %>
         </div>
-  
-      </article>
-    </div>
+      </section>
+    </article>
   </main>
 
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="/js/main.js"></script>
 </body>
 
 </html>
