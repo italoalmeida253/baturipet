@@ -5,6 +5,9 @@ const Comment = require('@models/Comment')
 const bcrypt = require('bcrypt')
 const Tokens = require('csrf')
 const tokens = new Tokens()
+const { Storage } = require('@google-cloud/storage')
+const { format } = require('util')
+const storage = new Storage()
 
 const controller = {
   logout: {
@@ -30,7 +33,7 @@ const controller = {
       const token = tokens.create(secret)
       return res.render('edit-data', { token })
     },
-    async post (req, res) {
+    async post (req, res, next) {
       const {
         username, email, phone, password, passwordCheck, csrfToken
       } = req.body
@@ -53,11 +56,7 @@ const controller = {
       }
 
       const user = await UserType.findById(id).exec()
-
-      if (req.file) {
-        const { filename } = req.file
-        user.profilePic = `/uploads/${filename}`
-      }
+      const bucket = storage.bucket(process.env.GCLOUD_STORAGE_BUCKET)
 
       if (username) {
         let exist = await UserType.findOne({ username }).exec()
@@ -115,7 +114,31 @@ const controller = {
         user.password = hashedPassword
       }
 
+      if (req.file) {
+        const blob = bucket.file(req.file.originalname)
+        const blobStream = blob.createWriteStream()
+
+        blobStream.on('error', err => {
+          next(err)
+        })
+
+        blobStream.on('finish', () => {
+          // The public URL can be used to directly access the file via HTTP.
+          const publicUrl = format(
+            `https://storage.googleapis.com/${bucket.name}/${blob.name}`
+          )
+
+          user.profilePic = publicUrl
+          req.session.user.profilePic = publicUrl
+
+          Promise.all([user.save(), req.session.save()])
+        })
+
+        blobStream.end(req.file.buffer)
+      }
+
       Promise.all([user.save(), req.session.save()])
+
       return res.redirect(`/${type}/profile`)
     }
   },

@@ -1,6 +1,6 @@
 const express = require('express')
 const controller = require('@controllers/clients')
-const upload = require('@configs/multer')
+const multer = require('@configs/multer')
 
 const routes = new express.Router()
 
@@ -11,7 +11,7 @@ routes
 routes
   .route('/client/publish')
   .get(controller.publish.get)
-  .post(upload.single('image'), controller.publish.post)
+  .post(multer.single('image'), controller.publish.post)
 
 routes.get('/client/inbox', controller.inbox.get)
 

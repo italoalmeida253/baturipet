@@ -18,112 +18,116 @@
 
 <body>
   <%- include('../includes/header.ejs') %>
-  <main>
-    <aside>
-      <nav>
-        <ul class="aside-menu">
-          <div class="menu-start">
-            <li class="aside-menu__item">
-              <a href="/" class="aside-menu__link">
-                <img src="/images/feed/home.png" alt="Ícone de casa" class="aside-menu__icon">
-                Página inicial
-              </a>
-            </li>
-            <li class="aside-menu__item">
-              <a href="/client/inbox" class="aside-menu__link">
-                <img src="/images/feed/chatting.png" alt="Ícone de mensagem" class="aside-menu__icon">
-                Caixa de mensagens
-              </a>
-            </li>
-            <li class="aside-menu__item">
-              <a href="/enterprises" class="aside-menu__link">
-                <img src="/images/feed/petshop.png" alt="Ícone de empresa" class="aside-menu__icon">
-                Empresas
-              </a>
-            </li>
-            <li class="aside-menu__item">
-              <a href="/user/notifications" class="aside-menu__link">
-                <img src="/images/feed/notification.png" alt="Ícone de sino" class="aside-menu__icon">
-                Notificações
-              </a>
-            </li>
-            <li class="aside-menu__item">
-              <a href=<%= `/${type}/profile` %> class="aside-menu__link">
-                <img src="/images/feed/setting.png" alt="Ícone de engrenagem" class="aside-menu__icon">
-                Configurações
-              </a>
-            </li>
-            <li class="aside-menu__item menu-end__item">
-              <a href=<%= `/${type}/profile` %> class="aside-menu__link aside-menu__link--profile aside-menu__link--sth">
-                <img src="/images/person-circle.svg" alt="Ícone de usuário" class="aside-menu__icon">
-                Perfil
-              </a>
-            </li>
-          </div>
-          <div class="menu-end">
-            <li class="aside-menu__item">
-              <a href=<%= `/${type}/profile` %> class="aside-menu__link aside-menu__link--profile aside-menu__link--sth">
-                <img src="/images/person-circle.svg" alt="Ícone de usuário" class="aside-menu__icon">
-                Perfil
-              </a>
-            </li>
-          </div>
-        </ul>
-      </nav>
-    </aside>
-
-    <article class="user">
-      <section class="infors">
-        <div class="infors__flex">
-          <div class="infors__container">
+    <main>
+      <aside>
+        <nav>
+          <ul class="aside-menu">
+            <div class="menu-start">
+              <li class="aside-menu__item">
+                <a href="/" class="aside-menu__link">
+                  <img src="/images/feed/home.png" alt="Ícone de casa" class="aside-menu__icon">
+                  Página inicial
+                </a>
+              </li>
+              <li class="aside-menu__item">
+                <a href="/client/inbox" class="aside-menu__link">
+                  <img src="/images/feed/chatting.png" alt="Ícone de mensagem" class="aside-menu__icon">
+                  Caixa de mensagens
+                </a>
+              </li>
+              <li class="aside-menu__item">
+                <a href="/enterprises" class="aside-menu__link">
+                  <img src="/images/feed/petshop.png" alt="Ícone de empresa" class="aside-menu__icon">
+                  Empresas
+                </a>
+              </li>
+              <li class="aside-menu__item">
+                <a href="/user/notifications" class="aside-menu__link">
+                  <img src="/images/feed/notification.png" alt="Ícone de sino" class="aside-menu__icon">
+                  Notificações
+                </a>
+              </li>
+              <li class="aside-menu__item">
+                <a href=<%=`/${type}/profile` %> class="aside-menu__link">
+                  <img src="/images/feed/setting.png" alt="Ícone de engrenagem" class="aside-menu__icon">
+                  Configurações
+                </a>
+              </li>
+              <li class="aside-menu__item menu-end__item">
+                <a href=<%=`/${type}/profile` %> class="aside-menu__link aside-menu__link--profile
+                  aside-menu__link--sth">
+                  <img src="/images/person-circle.svg" alt="Ícone de usuário" class="aside-menu__icon">
+                  Perfil
+                </a>
+              </li>
+            </div>
+            <div class="menu-end">
+              <li class="aside-menu__item">
+                <a href=<%=`/${type}/profile` %> class="aside-menu__link aside-menu__link--profile
+                  aside-menu__link--sth">
+                  <img src="/images/person-circle.svg" alt="Ícone de usuário" class="aside-menu__icon">
+                  Perfil
+                </a>
+              </li>
+            </div>
+          </ul>
+        </nav>
+      </aside>
+      <article class="user">
+        <section class="infors">
+          <div class="infors__flex">
             <div class="flex-column">
-              <img src=<%= profilePic %> alt="Imagem de perfil do usuário" class="infors__profile-pic">
+              <img src=<%=profilePic %> alt="Imagem do usuário" class="user__profile-pic">
             </div>
             <div class="flex-column">
-              <h2 class="infors__name">
-                <%= name %>
-              </h2>
-              <a href=<%= `/profile/${username}` %> class="infors__username">
-                <%= username %>
-              </a>
-              <ul class="infors__statistics">
-                <li class="infors__statistic">
+              <div class="infors__container">
+                <h2 class="user__username">
+                  <%= username %>
+                </h2>
+                <a class="button" href="/user/edit-data">Editar perfil</a>
+                <a class="button" href="/client/publish">Publicar</a>
+                <a class="button" href="/user/logout">Sair</a>
+              </div>
+              <ul class="user__statistics">
+                <li class="user__statistic">
                   <strong>
                     <%= publications.length %>
-                  </strong>
-                  Publicações
+                  </strong> Publicações
                 </li>
               </ul>
+              <h2 class="user__name">
+                <%= name %>
+              </h2>
             </div>
           </div>
-          <div class="flex-column">
-            <a href="/client/publish" class="button">Publicar</a>
-          </div>
-        </div>
-      </section>
-      <section class="publications">
-        <h2 class="publications__title">Publicações</h2>
-        <div class="publications__grid">
-          <% for (publication of publications) { %>
-            <div class="publication">
-              <div class="publication__actions">
-                <a href=<%= `/client/edit/${publication.id}` %> class="button">Editar</a>
-                <a href=<%= `/client/delete/${publication.id}` %> class="button">Excluir</a>
+        </section>
+        <ul class="user__menu">
+          <li class="user__item">
+            <img src="/images/profile/grid-3x3.svg" alt="Ícone de grade" class="user__icon">
+            Publicações
+          </li>
+        </ul>
+        <section class="publications">
+          <div class="publications__grid">
+            <% for (const publication of publications) { %>
+              <div class="publication">
+                <img src=<%= publication.imagePath %> alt="Imagem da publicação" class="publication__image">
+                <div class="publication__actions">
+                  <a href=<%= `/client/edit/${publication.id}` %> class='button button--icon'>
+                    <img src="/images/profile/pencil-fill.svg" alt="Ícone de lápis" class="publication__icon">
+                  </a>
+                  <a href=<%= `/client/delete/${publication.id}` %> class='button button--icon'>
+                    <img src="/images/profile/trash-fill.svg" alt="Ícone de lixeira" class="publication__icon">
+                  </a>
+                </div>
               </div>
-              <img src=<%= publication.imagePath %> alt="Imagem da publicação" class="publication__image">
-              <footer>
-                <p class="publication__description">
-                  <%= publication.description %>
-                </p>
-              </footer>
-            </div>
-          <% } %>
-        </div>
-      </section>
-    </article>
-  </main>
+            <% } %>
+          </div>
+        </section>
+      </article>
+    </main>
 
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </body>
 
 </html>

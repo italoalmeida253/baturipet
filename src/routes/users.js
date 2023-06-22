@@ -1,6 +1,6 @@
 const express = require('express')
 const controller = require('@controllers/users')
-const upload = require('@configs/multer')
+const multer = require('@configs/multer')
 
 const routes = new express.Router()
 
@@ -11,7 +11,7 @@ routes
 routes
   .route('/user/edit-data')
   .get(controller.editData.get)
-  .post(upload.single('image'), controller.editData.post)
+  .post(multer.single('image'), controller.editData.post)
 routes
   .route('/user/like')
   .post(controller.like.post)

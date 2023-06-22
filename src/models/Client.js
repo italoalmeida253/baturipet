@@ -35,7 +35,7 @@ const clientSchema = new mongoose.Schema({
   }],
   likes: [],
   profilePic: {
-    type: 'String',
+    type: String,
     default: '/images/person-circle.svg'
   }
 })

@@ -2,6 +2,9 @@ const Client = require('@models/Client')
 const Publication = require('@models/Publication')
 const Tokens = require('csrf')
 const tokens = new Tokens()
+const { Storage } = require('@google-cloud/storage')
+const { format } = require('util')
+const storage = new Storage()
 
 function filterPublications (posts, userLikes) {
   const publications = [...posts]
@@ -49,30 +52,44 @@ const controller = {
       const token = tokens.create(secret)
       res.render('clients/publish', { username, token })
     },
-    async post (req, res) {
+    async post (req, res, next) {
       const { username } = req.session.user
-      const { filename } = req.file
       const { description } = req.body
 
       const user = await Client.findOne({ username }).exec()
+      const bucket = storage.bucket(process.env.GCLOUD_STORAGE_BUCKET)
 
-      const publication = new Publication({
-        author: user._id,
-        description,
-        likes: 0,
-        imagePath: `/uploads/${filename}`
+      const blob = bucket.file(req.file.originalname)
+      const blobStream = blob.createWriteStream()
+
+      blobStream.on('error', err => {
+        next(err)
       })
 
-      const location = req.body.location
-      if (location) {
-        const [longitude, latitude] = location.split(';')
-        publication.longitude = longitude
-        publication.latitude = latitude
-      }
+      blobStream.on('finish', () => {
+        // The public URL can be used to directly access the file via HTTP.
+        const publicUrl = format(
+          `https://storage.googleapis.com/${bucket.name}/${blob.name}`
+        )
+        const publication = new Publication({
+          author: user._id,
+          description,
+          likes: 0,
+          imagePath: publicUrl
+        })
 
-      user.publications.push(publication._id)
+        const location = req.body.location
+        if (location) {
+          const [longitude, latitude] = location.split(';')
+          publication.longitude = longitude
+          publication.latitude = latitude
+        }
+        user.publications.push(publication._id)
 
-      Promise.all([user.save(), publication.save()])
+        Promise.all([user.save(), publication.save()])
+      })
+
+      blobStream.end(req.file.buffer)
 
       return res.redirect('/client/profile')
     }
