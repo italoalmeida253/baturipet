@@ -115,6 +115,8 @@ const controller = {
       }
 
       if (req.file) {
+        const { originalname } = req.file
+        req.file.originalname = originalname.replace(/\s/g, '')
         const blob = bucket.file(req.file.originalname)
         const blobStream = blob.createWriteStream()
 

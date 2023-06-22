@@ -55,10 +55,12 @@ const controller = {
     async post (req, res, next) {
       const { username } = req.session.user
       const { description } = req.body
+      const { originalname } = req.file
 
       const user = await Client.findOne({ username }).exec()
       const bucket = storage.bucket(process.env.GCLOUD_STORAGE_BUCKET)
 
+      req.file.originalname = originalname.replace(/\s/g, '')
       const blob = bucket.file(req.file.originalname)
       const blobStream = blob.createWriteStream()
 
